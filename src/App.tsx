@@ -3,6 +3,7 @@ import Banner from "./Components/Banner";
 import Nav from "./Components/nav";
 import Technologies from "./Components/Technologies";
 import type { Itechnology } from "./Technologies Type/TechnologiesCardType";
+import Footer from "./Components/Footer";
 
 const technologiesFetch = async (): Promise<Itechnology[]> => {
   const res = await fetch("/data.json");
@@ -20,6 +21,7 @@ function App() {
       <Suspense fallback={<h2>Loading...Please Wait</h2>}>
         <Technologies technologiesPromise={technologiesPromise} />
       </Suspense>
+      <Footer/>
     </>
   );
 }

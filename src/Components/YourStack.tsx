@@ -11,30 +11,46 @@ const YourStack = ({
   handleRemove,
   handleRemoveAll,
 }: YourStackProps) => {
+
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+
       {/* Heading */}
-      <h2 className="text-2xl font-bold">Your Stack</h2>
+      <h2 className="text-2xl font-bold">
+        Your Stack
+      </h2>
 
       {/* Selected Count */}
       <p className="mt-1 text-gray-400">
         {selectedTechnologies.length} Technology Selected
       </p>
 
+
       {/* Conditional Rendering */}
       {selectedTechnologies.length === 0 ? (
+
         <div className="py-20 text-center">
-          <p className="text-gray-400">Your stack is empty.</p>
+
+          <p className="text-gray-400">
+            Your stack is empty.
+          </p>
+
         </div>
+
       ) : (
+
         <div className="mt-5">
+
           {/* Selected Technologies */}
           {selectedTechnologies.map((technology) => (
+
             <div
-              key={technology.name}
+              key={technology.id}
               className="flex items-center justify-between border-b border-gray-100 py-4"
             >
+
               <div className="flex items-center gap-3">
+
                 <img
                   src={technology.logo}
                   alt={technology.name}
@@ -42,11 +58,19 @@ const YourStack = ({
                 />
 
                 <div>
-                  <h3 className="font-semibold">{technology.name}</h3>
 
-                  <p className="text-sm text-gray-400">{technology.category}</p>
+                  <h3 className="font-semibold">
+                    {technology.name}
+                  </h3>
+
+                  <p className="text-sm text-gray-400">
+                    {technology.category}
+                  </p>
+
                 </div>
+
               </div>
+
 
               {/* Remove */}
               <button
@@ -55,8 +79,11 @@ const YourStack = ({
               >
                 ✕
               </button>
+
             </div>
+
           ))}
+
 
           {/* Remove All */}
           <button
@@ -65,8 +92,11 @@ const YourStack = ({
           >
             Remove All
           </button>
+
         </div>
+
       )}
+
     </div>
   );
 };
