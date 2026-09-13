@@ -1,4 +1,5 @@
 export interface Itechnology {
+  id: string;
   logo: string;
   badge: string;
   name: string;

@@ -1,95 +1,182 @@
-import { use, useState } from 'react';
-import type { Itechnology } from '../Technologies Type/TechnologiesCardType';
-import TechnologiesCard from './TechnologiesCard';
-import YourStack from './YourStack';
+import { use, useState } from "react";
+import type { Itechnology } from "../Technologies Type/TechnologiesCardType";
+import TechnologiesCard from "./TechnologiesCard";
+import YourStack from "./YourStack";
+
+import { ToastContainer, toast } from "react-toastify";
+
 
 interface technologiesProps {
-    technologiesPromise: Promise<Itechnology[]>
+  technologiesPromise: Promise<Itechnology[]>;
 }
 
 const Technologies = ({ technologiesPromise }: technologiesProps) => {
+  const technologies = use(technologiesPromise);
 
-    const technologies = use(technologiesPromise);
+  const [selectedTechnologies, setSelectedTechnologies] = useState< Itechnology[]>([]);
 
-    const [selectedTechnologies, setSelectedTechnologies] = useState<Itechnology[]>([]);
+  // Add To Stack
+  const handleAddToStack = (technology: Itechnology) => {
+    let alreadyAdded = false;
 
-    // Add to Stack
-    const handleAddToStack = (technology: Itechnology) => {
+    selectedTechnologies.map((item) => {
+      if (item.id === technology.id) {
+        alreadyAdded = true;
+      }
+    });
 
-        const alreadyAdded = selectedTechnologies.map((item) => {
-            return item.id === technology.id;
-        });
+    if (alreadyAdded) {
+      toast.warning(`${technology.name} is already in your stack`);
+      return;
+    }
 
-        if (alreadyAdded.includes(true)) {
-            return;
-        }
+    setSelectedTechnologies([...selectedTechnologies, technology]);
 
-        setSelectedTechnologies([
-            ...selectedTechnologies,
-            technology
-        ]);
-    };
+    toast.success(`${technology.name} added to your stack`);
+  };
 
+  // Remove
+  const handleRemove = (technology: Itechnology) => {
+    const newSelectedTechnologies: Itechnology[] = [];
 
-    // Remove one technology
-    const handleRemove = (technology: Itechnology) => {
+    selectedTechnologies.map((item) => {
+      if (item.id !== technology.id) {
+        newSelectedTechnologies.push(item);
+      }
+    });
 
-        const newSelectedTechnologies: Itechnology[] = [];
+    setSelectedTechnologies(newSelectedTechnologies);
 
-        selectedTechnologies.map((item) => {
+    toast.success(`${technology.name} removed from your stack`);
+  };
 
-            if (item.id !== technology.id) {
-                newSelectedTechnologies.push(item);
-            }
+  // Remove All
+  const handleRemoveAll = () => {
+    setSelectedTechnologies([]);
 
-        });
+    toast.success("All technologies removed");
+  };
 
-        setSelectedTechnologies(newSelectedTechnologies);
-    };
+  return (
+    <div className="container mx-auto mt-24">
+      {/* Heading */}
 
+      <h1 className="text-5xl font-bold">
+        Explore the <span className="text-[#D8187E]">Technologies</span>
+      </h1>
 
-    // Remove all
-    const handleRemoveAll = () => {
-        setSelectedTechnologies([]);
-    };
+      <p className="text-gray-500 mt-2 text-[22px]">
+        Pick one technology per category to build your ideal stack.
+      </p>
 
+      {/* Technologies + Your Stack */}
 
-    return (
-        <div className='container mx-auto mt-24'>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-8">
+        {/* Technologies */}
 
-            <h1 className='text-5xl font-bold'>
-                Explore the
-                <span className='text-[#D8187E]'> Technologies</span>
-            </h1>
-
-            <p className='text-gray-500 mt-2 text-[22px]'>
-                Pick one technology per category to build your ideal stack.
-            </p>
-
-
-            <div className='grid grid-cols-1 lg:grid-cols-4 gap-6 mt-8'>
-
-                <div className='lg:col-span-3'>
-                    <TechnologiesCard
-                        technologies={technologies}
-                        handleAddToStack={handleAddToStack}
-                        selectedTechnologies={selectedTechnologies}
-                    />
-                </div>
-
-
-                <div>
-                    <YourStack
-                        selectedTechnologies={selectedTechnologies}
-                        handleRemove={handleRemove}
-                        handleRemoveAll={handleRemoveAll}
-                    />
-                </div>
-
-            </div>
-
+        <div className="lg:col-span-3">
+          <TechnologiesCard
+            technologies={technologies}
+            handleAddToStack={handleAddToStack}
+            selectedTechnologies={selectedTechnologies}
+          />
         </div>
-    );
+
+        {/* Your Stack */}
+
+        <div>
+          <YourStack
+            selectedTechnologies={selectedTechnologies}
+            handleRemove={handleRemove}
+            handleRemoveAll={handleRemoveAll}
+          />
+        </div>
+      </div>
+
+      {/* Toast */}
+
+      <ToastContainer />
+    </div>
+  );
 };
 
 export default Technologies;
+
+// import { use, useState } from "react";
+// import type { Itechnology } from "../Technologies Type/TechnologiesCardType";
+// import TechnologiesCard from "./TechnologiesCard";
+// import YourStack from "./YourStack";
+
+// interface technologiesProps {
+//   technologiesPromise: Promise<Itechnology[]>;
+// }
+
+// const Technologies = ({ technologiesPromise }: technologiesProps) => {
+//   const technologies = use(technologiesPromise);
+
+//   const [selectedTechnologies, setSelectedTechnologies] = useState<Itechnology[]>([]);
+
+//   // Add to Stack
+//   const handleAddToStack = (technology: Itechnology) => {
+//     const alreadyAdded = selectedTechnologies.map((item) => {
+//       return item.id === technology.id;
+//     });
+
+//     if (alreadyAdded.includes(true)) {
+//       return;
+//     }
+
+//     setSelectedTechnologies([...selectedTechnologies, technology]);
+//   };
+
+//   // Remove one technology
+//   const handleRemove = (technology: Itechnology) => {
+//     const newSelectedTechnologies: Itechnology[] = [];
+
+//     selectedTechnologies.map((item) => {
+//       if (item.id !== technology.id) {
+//         newSelectedTechnologies.push(item);
+//       }
+//     });
+
+//     setSelectedTechnologies(newSelectedTechnologies);
+//   };
+
+//   // Remove all
+//   const handleRemoveAll = () => {
+//     setSelectedTechnologies([]);
+//   };
+
+//   return (
+//     <div className="container mx-auto mt-24">
+//       <h1 className="text-5xl font-bold">
+//         Explore the
+//         <span className="text-[#D8187E]"> Technologies</span>
+//       </h1>
+
+//       <p className="text-gray-500 mt-2 text-[22px]">
+//         Pick one technology per category to build your ideal stack.
+//       </p>
+
+//       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-8">
+//         <div className="lg:col-span-3">
+//           <TechnologiesCard
+//             technologies={technologies}
+//             handleAddToStack={handleAddToStack}
+//             selectedTechnologies={selectedTechnologies}
+//           />
+//         </div>
+
+//         <div>
+//           <YourStack
+//             selectedTechnologies={selectedTechnologies}
+//             handleRemove={handleRemove}
+//             handleRemoveAll={handleRemoveAll}
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Technologies;
