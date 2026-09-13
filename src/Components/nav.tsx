@@ -1,55 +1,133 @@
-import Logo from '../assets/logo-text.png'
+import { useState } from "react";
+import Logo from "../assets/logo-text.png";
 
 const Nav = () => {
-    return (
-        <nav className='my-5 sticky top-0 bg-white z-10'>
+  const [isOpen, setIsOpen] = useState(false);
 
-            <div className='container mx-auto px-4'>
+  return (
+    <nav className="my-5 sticky top-0 bg-white z-10">
 
-                <div className='flex items-center justify-between'>
+      <div className="container mx-auto px-4">
 
-                    {/* Hamburger */}
-                    <button className='text-2xl lg:hidden'>
-                        ☰
-                    </button>
+        <div className="flex items-center justify-between">
 
-                    {/* Logo */}
-                    <img
-                        src={Logo}
-                        alt=""
-                        className='w-28 md:w-32 lg:w-auto'
-                    />
+          {/* Hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-2xl lg:hidden"
+          >
+            ☰
+          </button>
 
-                    {/* Menu */}
-                    <ul className='hidden lg:flex gap-6 items-center'>
-                        <li><a href="">Home</a></li>
-                        <li>Technologies</li>
-                        <li>Projects</li>
-                        <li>About</li>
-                        <li>Contact</li>
-                    </ul>
+          {/* Logo */}
+          <img
+            src={Logo}
+            alt=""
+            className="w-28 md:w-32 lg:w-auto"
+          />
 
-                    {/* Buttons */}
-                    <div className='flex gap-3 md:gap-5 items-center'>
+          {/* Menu */}
+          <ul className="hidden lg:flex gap-6 items-center">
+            <li>Home</li>
+            <li>Technologies</li>
+            <li>Projects</li>
+            <li>About</li>
+            <li>Contact</li>
+          </ul>
 
-                        <button>
-                            Sign In
-                        </button>
+          {/* Buttons */}
+          <div className="flex gap-3 md:gap-5 items-center">
 
-                        <button className='bg-[#D91B7E] text-white px-4 md:px-5 py-2 rounded-full'>
-                            Sign Up
-                        </button>
+            <button>
+              Sign In
+            </button>
 
-                    </div>
+            <button className="bg-[#D91B7E] text-white px-4 md:px-5 py-2 rounded-full">
+              Sign Up
+            </button>
 
-                </div>
+          </div>
 
-            </div>
+        </div>
 
-        </nav>
-    );
+        {/* Mobile Menu */}
+        {isOpen && (
+          <ul className="mt-5 flex flex-col gap-4 border-t border-gray-200 pt-5 lg:hidden">
+            <li>Home</li>
+            <li>Technologies</li>
+            <li>Projects</li>
+            <li>About</li>
+            <li>Contact</li>
+          </ul>
+        )}
+
+      </div>
+
+    </nav>
+  );
 };
 
 export default Nav;
+
+
+
+
+
+
+
+
+// import Logo from '../assets/logo-text.png'
+
+// const Nav = () => {
+//     return (
+//         <nav className='my-5 sticky top-0 bg-white z-10'>
+
+//             <div className='container mx-auto px-4'>
+
+//                 <div className='flex items-center justify-between'>
+
+//                     {/* Hamburger */}
+//                     <button className='text-2xl lg:hidden'>
+//                         ☰
+//                     </button>
+
+//                     {/* Logo */}
+//                     <img
+//                         src={Logo}
+//                         alt=""
+//                         className='w-28 md:w-32 lg:w-auto'
+//                     />
+
+//                     {/* Menu */}
+//                     <ul className='hidden lg:flex gap-6 items-center'>
+//                         <li><a href="">Home</a></li>
+//                         <li>Technologies</li>
+//                         <li>Projects</li>
+//                         <li>About</li>
+//                         <li>Contact</li>
+//                     </ul>
+
+//                     {/* Buttons */}
+//                     <div className='flex gap-3 md:gap-5 items-center'>
+
+//                         <button>
+//                             Sign In
+//                         </button>
+
+//                         <button className='bg-[#D91B7E] text-white px-4 md:px-5 py-2 rounded-full'>
+//                             Sign Up
+//                         </button>
+
+//                     </div>
+
+//                 </div>
+
+//             </div>
+
+//         </nav>
+//     );
+// };
+
+// export default Nav;
 
 
