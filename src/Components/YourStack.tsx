@@ -80,7 +80,7 @@ const YourStack = ({selectedTechnologies,handleRemove,handleRemoveAll,}: YourSta
 
           {/* Remove All */}
 
-          <button onClick={handleRemoveAll} className="mt-5 w-full rounded-lg border  bg-linear-to-r from-[#FF5722] via-[#D8187E] to-[#7C3AED] py-2 text-white  hover:border-red-200 py-2 text-red-500 "
+          <button onClick={handleRemoveAll} className="mt-5 w-full rounded-lg border bg-linear-to-r from-[#FF5722] via-[#D8187E] to-[#7C3AED] py-2 text-white hover:border-red-200"
           > Remove All
           </button>
 

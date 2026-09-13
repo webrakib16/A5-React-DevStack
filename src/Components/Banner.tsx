@@ -36,4 +36,3 @@ const Banner = () => {
 
 export default Banner;
 
-/* className="bg-linear-to-r from-[#FF5722] via-[#D8187E] to-[#7C3AED]" */
