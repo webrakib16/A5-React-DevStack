@@ -1,6 +1,6 @@
 export interface Itechnology {
   id: string;
-  logo: string;
+  icon: string;
   badge: string;
   name: string;
   description: string;

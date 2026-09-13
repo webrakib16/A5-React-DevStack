@@ -2,7 +2,7 @@ import type { Itechnology } from "../Technologies Type/TechnologiesCardType";
 
 interface ITechnologiesCardProps {
   technologies: Itechnology[];
-  handleAddToStack: (technology: Itechnology) => void;
+  handleAddToStack: (technology: Itechnology) => boolean;
   selectedTechnologies: Itechnology[];
 }
 
@@ -35,7 +35,7 @@ const TechnologiesCard = ({
             <div className="flex items-center justify-between">
 
               <img
-                src={technology.logo}
+                src={technology.icon}
                 alt={technology.name}
                 className="h-10 w-10 object-contain"
               />

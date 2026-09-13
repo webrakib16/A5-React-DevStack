@@ -8,7 +8,7 @@ const Footer = () => {
 
       <div>
         <img src={image} alt="" />
-        <p>
+        <p className="mt-4">
           Curated tools, technologies, and resources for developers building{" "}
           <br />
           modern software.

@@ -2,15 +2,11 @@ import type { Itechnology } from "../Technologies Type/TechnologiesCardType";
 
 interface YourStackProps {
   selectedTechnologies: Itechnology[];
-  handleRemove: (technology: Itechnology) => void;
-  handleRemoveAll: () => void;
+  handleRemove: (technology: Itechnology) =>boolean ;
+  handleRemoveAll: () => boolean;
 }
 
-const YourStack = ({
-  selectedTechnologies,
-  handleRemove,
-  handleRemoveAll,
-}: YourStackProps) => {
+const YourStack = ({selectedTechnologies,handleRemove,handleRemoveAll,}: YourStackProps) => {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
 
@@ -50,7 +46,7 @@ const YourStack = ({
               <div className="flex items-center gap-3">
 
                 <img
-                  src={technology.logo}
+                  src={technology.icon}
                   alt={technology.name}
                   className="h-10 w-10 object-contain"
                 />
@@ -84,11 +80,8 @@ const YourStack = ({
 
           {/* Remove All */}
 
-          <button
-            onClick={handleRemoveAll}
-            className="mt-5 w-full rounded-lg border border-red-200 py-2 text-red-500 hover:bg-red-50"
-          >
-            Remove All
+          <button onClick={handleRemoveAll} className="mt-5 w-full rounded-lg border  bg-linear-to-r from-[#FF5722] via-[#D8187E] to-[#7C3AED] py-2 text-white  hover:border-red-200 py-2 text-red-500 "
+          > Remove All
           </button>
 
         </div>
@@ -103,8 +96,8 @@ export default YourStack;
 
 
 
-
-
+/* border-red-200 py-2 text-red-500 */
+/* bg-linear-to-r from-[#FF5722] via-[#D8187E] to-[#7C3AED] */
 
 
 

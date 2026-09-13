@@ -27,16 +27,17 @@ const Technologies = ({ technologiesPromise }: technologiesProps) => {
 
     if (alreadyAdded) {
       toast.warning(`${technology.name} is already in your stack`);
-      return;
+      return false;
     }
 
     setSelectedTechnologies([...selectedTechnologies, technology]);
 
     toast.success(`${technology.name} added to your stack`);
+    return true;
   };
 
   // Remove
-  const handleRemove = (technology: Itechnology) => {
+  const handleRemove = (technology: Itechnology): boolean => {
     const newSelectedTechnologies: Itechnology[] = [];
 
     selectedTechnologies.map((item) => {
@@ -48,13 +49,15 @@ const Technologies = ({ technologiesPromise }: technologiesProps) => {
     setSelectedTechnologies(newSelectedTechnologies);
 
     toast.success(`${technology.name} removed from your stack`);
+    return true;
   };
 
   // Remove All
-  const handleRemoveAll = () => {
+  const handleRemoveAll = (): boolean => {
     setSelectedTechnologies([]);
 
     toast.success("All technologies removed");
+    return true;
   };
 
   return (
