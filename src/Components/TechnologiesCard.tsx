@@ -1,0 +1,194 @@
+import type { Itechnology } from "../Technologies Type/TechnologiesCardType";
+
+interface ITechnologiesCardProps {
+  technologies: Itechnology[];
+  handleAddToStack: (technology: Itechnology) => void;
+  selectedTechnologies: Itechnology[];
+}
+
+const TechnologiesCard = ({
+  technologies,
+  handleAddToStack,
+  selectedTechnologies,
+}: ITechnologiesCardProps) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {technologies.map((technology) => {
+        const alreadyAdded = selectedTechnologies
+          .map((item) => {
+            return item.name === technology.name;
+          })
+          .includes(true);
+
+        return (
+          <div
+            key={technology.name}
+            className="rounded-xl border border-sky-200 bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          >
+            {/* Logo + Badge */}
+            <div className="flex items-center justify-between">
+              <img
+                src={technology.logo}
+                alt={technology.name}
+                className="h-10 w-10 object-contain"
+              />
+
+              <span className="rounded-full border border-sky-100 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-600">
+                {technology.badge}
+              </span>
+            </div>
+
+            {/* Name */}
+            <h2 className="mt-4 text-xl font-semibold">{technology.name}</h2>
+
+            {/* Description */}
+            <p className="mt-2 text-gray-500">{technology.description}</p>
+
+            {/* Category + Level + Rating */}
+            <div className="mt-5 flex items-center justify-between text-sm">
+              <span>{technology.category}</span>
+
+              <span>{technology.level}</span>
+
+              <span>⭐ {technology.rating}</span>
+            </div>
+
+            {/* Button */}
+            <button
+              onClick={() => handleAddToStack(technology)}
+              disabled={alreadyAdded}
+              className="mt-4 w-full rounded-lg bg-slate-900 py-3 text-white transition duration-300 hover:bg-slate-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+              {alreadyAdded ? "✓ Added to Stack" : "Add to Stack"}
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default TechnologiesCard;
+
+// import type { Itechnology } from "../Technologies Type/TechnologiesCardType";
+
+// interface ITechnologiesCardProps {
+//   technologies: Itechnology[];
+// }
+
+// const TechnologiesCard = ({
+//   technologies,
+// }: ITechnologiesCardProps) => {
+//   return (
+//     <div className="grid grid-cols-3 items-center gap-6">
+//       {technologies.map((technology) => {
+//         return (
+//           <div
+//             key={technology.name}
+//             className="rounded-xl border border-sky-200 bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+//           >
+//             {/* Logo + Badge */}
+//             <div className="flex items-center justify-between">
+//               <img
+//                 src={technology.logo}
+//                 alt={technology.name}
+//                 className="h-10 w-10 object-contain"
+//               />
+
+//               <span className="rounded-full border border-sky-100 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-600">
+//                 {technology.badge}
+//               </span>
+//             </div>
+
+//             {/* Name */}
+//             <h2 className="mt-4 text-xl font-semibold">
+//               {technology.name}
+//             </h2>
+
+//             {/* Description */}
+//             <p className="mt-2 text-gray-500">
+//               {technology.description}
+//             </p>
+
+//             {/* Category + Level + Rating */}
+//             <div className="mt-5 flex items-center justify-between text-sm">
+//               <span>{technology.category}</span>
+
+//               <span>{technology.level}</span>
+
+//               <span>⭐ {technology.rating}</span>
+//             </div>
+
+//             {/* Button */}
+//             <button className="mt-4 w-full rounded-lg bg-slate-900 py-3 text-white transition duration-300 hover:bg-slate-700">
+//               Add to Stack
+//             </button>
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
+// };
+
+// export default TechnologiesCard;
+
+// import type { Itechnology } from "../Technologies Type/TechnologiesCardType";
+
+// interface ITechnologiesCardProps {
+//   technologies: Itechnology[];
+// }
+
+// const TechnologiesCard = ({
+//   technologies,
+// }: ITechnologiesCardProps) => {
+//   return (
+//     <div className="grid grid-cols-3 items-center gap-6">
+//       {technologies.map((technology) => {
+//         return (
+//           <div key={technology.name} className="p-4">
+
+//             {/* Logo + Badge */}
+//             <div className="flex justify-between items-center">
+//               <img
+//                 src={technology.logo}
+//                 alt={technology.name}
+//                 className="w-10 h-10 object-contain"
+//               />
+
+//               <span className="text-sm">
+//                 {technology.badge}
+//               </span>
+//             </div>
+
+//             {/* Name */}
+//             <h2 className="text-xl font-semibold mt-4">
+//               {technology.name}
+//             </h2>
+
+//             {/* Description */}
+//             <p className="text-gray-500 mt-2">
+//               {technology.description}
+//             </p>
+
+//             {/* Category + Level + Rating */}
+//             <div className="flex justify-between items-center mt-5 text-sm">
+//               <span>{technology.category}</span>
+
+//               <span>{technology.level}</span>
+
+//               <span>⭐ {technology.rating}</span>
+//             </div>
+
+//             {/* Button */}
+//             <button className="w-full mt-4 bg-slate-900 text-white py-3 rounded-lg">
+//               Add to Stack
+//             </button>
+
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
+// };
+
+// export default TechnologiesCard;

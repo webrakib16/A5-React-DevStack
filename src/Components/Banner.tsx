@@ -2,8 +2,8 @@ import Hero from '../assets/banner-stack.png'
 
 const Banner = () => {
   return (
-    <section className="container mx-auto mt-24 mb-28">
-      <div className="flex justify-center items-center">
+    <section className="container mx-auto mt-24 ">
+      <div className="flex justify-between items-center">
 
         {/* Left Text */}
 

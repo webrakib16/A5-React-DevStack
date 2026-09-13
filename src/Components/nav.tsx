@@ -4,7 +4,7 @@ const Nav = () => {
     return (
        <nav className='my-5'>
 
-        <div className='grid grid-cols-3 justify-center container mx-auto'>
+        <div className='flex items-center justify-between container mx-auto'>
             <img src={Logo} alt="" />
 
             <ul className='flex gap-6 items-center'>
@@ -16,11 +16,11 @@ const Nav = () => {
 
             </ul>
 
-            <div className='flex gap-4 items-center '>
+            <div className='flex gap-5 justify-center items-center '>
                     <button>Sign In</button>
                     <button className='bg-[#D91B7E] text-white px-5 py-2 rounded-full'>Sign Up</button>
             </div>
-            
+
         </div>
        </nav>
     );
