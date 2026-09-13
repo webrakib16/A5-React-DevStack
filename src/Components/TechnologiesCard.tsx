@@ -6,11 +6,8 @@ interface ITechnologiesCardProps {
   selectedTechnologies: Itechnology[];
 }
 
-const TechnologiesCard = ({
-  technologies,
-  handleAddToStack,
-  selectedTechnologies,
-}: ITechnologiesCardProps) => {
+const TechnologiesCard = ({technologies,handleAddToStack,selectedTechnologies,}: ITechnologiesCardProps) => {
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
